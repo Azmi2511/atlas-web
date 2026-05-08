@@ -55,7 +55,7 @@ Pastikan lingkungan pengembangan Anda memenuhi syarat: **PHP >= 8.3**, **Compose
 
 ### 1. Kloning Repositori
 ```bash
-git clone https://github.com/username/eduface.git
+git clone https://github.com/username anda/atlas-web.git
 cd eduface.
 ```
 ### 2. Setup Otomatis
