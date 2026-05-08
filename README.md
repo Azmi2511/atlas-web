@@ -1,10 +1,5 @@
 <div align="center">
-
-<<<<<<< HEAD
   <img src="https://github.com/user-attachments/assets/9b10065d-e4e1-40ab-b017-5d3fcdac68da" alt="EduFace Logo" width="120">
-=======
-  <img src="https://raw.githubusercontent.com/Azmi2511/atlas-web/blob/main/public/images/logo.png" alt="EduFace Logo" width="120">
->>>>>>> 864ad4119fde12ab809bba5ea40219be79718e7c
 
   # 🏢 EduFace
   ### Digital Attendance System for Modern Productivity
