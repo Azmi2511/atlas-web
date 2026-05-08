@@ -1,7 +1,6 @@
 <div align="center">
 
-  <!-- Ganti URL logo jika sudah ada -->
-  <img src="https://raw.githubusercontent.com/username/eduface/main/public/logo.png" alt="EduFace Logo" width="120">
+  <img src="https://github.com/Azmi2511/atlas-web/blob/main/public/images/logo.png" alt="EduFace Logo" width="120">
 
   # 🏢 EduFace
   ### Digital Attendance System for Modern Productivity
