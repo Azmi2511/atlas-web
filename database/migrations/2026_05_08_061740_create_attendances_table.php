@@ -10,19 +10,31 @@ return new class extends Migration {
     {
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->timestamp('checkin_time')->nullable();
-            $table->timestamp('checkout_time')->nullable();
-            $table->decimal('latitude', 10, 7)->nullable();
-            $table->decimal('longitude', 10, 7)->nullable();
-            $table->string('qr_token')->nullable();
-            $table->string('selfie_image')->nullable();
-            $table->enum('status', [
-                'present',
-                'late',
-                'absent'
-            ])->default('present');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('class_id')->nullable()->constrained('classrooms')->onDelete('set null');
+            $table->date('date');
+            $table->time('check_in_time');
+            $table->time('check_out_time')->nullable();
+            $table->enum('status', ['hadir', 'izin', 'sakit', 'alpha'])->default('hadir');
+            $table->decimal('latitude', 10, 8)->nullable();
+            $table->decimal('longitude', 11, 8)->nullable();
+            $table->string('photo_selfie')->nullable();
+            $table->boolean('face_matched')->default(false);
+            $table->string('qr_code')->nullable();
+            $table->text('device_info')->nullable();
+            $table->foreignId('verified_by')->nullable()->constrained('users');
+            $table->timestamps();
 
+            $table->index(['user_id', 'date']);
+        });
+
+        Schema::create('qr_tokens', function (Blueprint $table) {
+            $table->id();
+            $table->string('token')->unique();
+            $table->foreignId('class_id')->constrained('classrooms')->onDelete('cascade');
+            $table->date('valid_for_date');
+            $table->time('valid_until')->nullable();
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }
@@ -30,5 +42,6 @@ return new class extends Migration {
     public function down(): void
     {
         Schema::dropIfExists('attendances');
+        Schema::dropIfExists('qr_tokens');
     }
 };

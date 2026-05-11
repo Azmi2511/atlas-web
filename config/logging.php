@@ -127,6 +127,13 @@ return [
             'path' => storage_path('logs/laravel.log'),
         ],
 
+        'face_audit' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/face_audit.log'),
+            'level' => 'info',
+            'days' => 30,
+        ],
+
     ],
 
 ];

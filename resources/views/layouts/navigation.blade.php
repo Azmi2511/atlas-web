@@ -82,6 +82,19 @@
                             <span class="text-xs text-blue-300">Data Siswa</span>
                         </div>
                     </x-nav-link>
+                    <x-nav-link 
+                        :href="route('attendance.index')" 
+                        :active="request()->routeIs('attendance.*')" 
+                        class="group flex items-center gap-4 rounded-2xl px-4 py-3 transition-all duration-300"
+                    >
+                        <div class="h-11 w-11 rounded-xl flex items-center justify-center bg-blue-800 group-[.active]:bg-blue-600 transition-all duration-300"> 
+                            <i class="fas fa-user-check text-sm text-white"></i>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="font-semibold text-sm text-white">Absensi</span>
+                            <span class="text-xs text-blue-300">Data Absensi</span>
+                        </div>
+                    </x-nav-link>
                 @endcan
             </div>
         </div>

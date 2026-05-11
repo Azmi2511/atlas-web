@@ -1,21 +1,20 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\AttendanceController;
+use App\Http\Controllers\API\ProfileController;
 
-Route::prefix('v1')->group(function () {
+Route::post('/login', [AuthController::class, 'login']);
 
-    Route::post('/login', [AuthController::class, 'login']);
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/profile', [AuthController::class, 'profile']);
+    Route::put('/profile', [ProfileController::class, 'update']);
 
-    Route::middleware('auth:sanctum')->group(function () {
+    // Attendance dengan middleware GPS (opsional, bisa diaktifkan jika ingin wajib GPS)
+    Route::post('/attendance', [AttendanceController::class, 'submit']);
+    Route::get('/attendance/history', [AttendanceController::class, 'history']);
 
-        Route::post('/logout', [AuthController::class, 'logout']);
-
-        Route::post('/attendance/checkin', [
-            AttendanceController::class,
-            'checkin'
-        ]);
-
-    });
+    // Endpoint untuk mendapatkan QR token (jika diperlukan mobile untuk scan)
+    // Route::get('/qr/token', [QRController::class, 'generateToken']);
 });

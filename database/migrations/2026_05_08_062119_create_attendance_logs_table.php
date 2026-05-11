@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('attendance_logs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('attendance_id')->constrained()->onDelete('cascade');
-            $table->string('activity');
-            $table->string('device_info')->nullable();
-            $table->string('ip_address')->nullable();
+            $table->foreignId('user_id')->constrained();
+            $table->string('action');
+            $table->text('note')->nullable();
+            $table->json('old_data')->nullable();
+            $table->json('new_data')->nullable();
             $table->timestamps();
         });
     }

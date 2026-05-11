@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\ValidateGPSRadius;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -16,6 +17,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function ($middleware) {
         $middleware->alias([
             'admin' => AdminMiddleware::class,
+            'validate.gps' => ValidateGPSRadius::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
